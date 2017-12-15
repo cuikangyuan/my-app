@@ -1,5 +1,5 @@
-import {Component, Inject, Injectable, OnInit} from '@angular/core';
-import {Http} from '@angular/http';
+import {Component, Inject, Injectable, OnInit, EventEmitter} from '@angular/core';
+import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {SearchResultComponent} from '../search-result/search-result.component';
 
@@ -8,6 +8,11 @@ import {SearchResultComponent} from '../search-result/search-result.component';
   templateUrl: './you-tube-search-component.component.html',
   styleUrls: ['./you-tube-search-component.component.css']
 })
+
+export var YOUTUBE_API_KEY: string = 'AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk';
+export var YOUTUBE_API_KEY: string = 'https://www.googleapis.com/youtube/v3/search';
+let loadingGif: string = ((<any>window).__karma__) ? '' : require('images/loading.gif');
+
 @Injectable
 export class YouTubeSearchComponentComponent implements OnInit {
 
@@ -31,7 +36,7 @@ export class YouTubeSearchComponentComponent implements OnInit {
     let queryUrl: string = `${this.apiUrl}?${params}`;
 
     return this.http.get(queryUrl)
-      .map(res => {
+      .map((res: Response) => {
         return (<any>res.json()).items().map(item => {
           return new SearchResultComponent({
             id: item.id.videoId,
