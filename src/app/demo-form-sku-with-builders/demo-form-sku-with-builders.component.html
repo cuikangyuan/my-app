@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup] = 'myForm'
+  (ngSubmit)="onSubmit(myForm.value)"  >
+
+  <div>
+  <label for="skuInput1">SKU1</label>
+
+  <input type="text"
+  	id="skuInput1"
+  	[formControl]="myForm.controls['sku1']">
+<!--
+    <div *ngIf="!skuValidate.valid"> SKU is invalid</div>
+
+    <div *ngIf="skuValidate.hasError('required')"> SKU is required</div>
+-->
+    <div *ngIf="!myForm.controls['sku1'].valid"> SKU is invalid</div>
+
+    <div *ngIf="myForm.controls['sku1'].hasError('required')"> SKU is required</div>
+
+    <div *ngIf="myForm.controls['sku1'].hasError('invalidSku')"> SKU is not start with 123</div>
+
+  </div>
+
+    <div>
+    <label for="skuInput2">SKU2</label>
+
+  <input type="text"
+  	id="skuInput2"
+  	placeholder="SKU"
+  	[formControl]="myForm.controls['sku2']">
+
+    </div>
+
+    <button type="submit">Submit</button>
+
+
+  </form>
+
+</div>
