@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 /*
   This API key may or may not work for you. Your best bet is to issue your own
@@ -64,6 +65,7 @@ export class YouTubeService {
       `maxResults=10`
     ].join('&');
     let queryUrl: string = `${this.apiUrl}?${params}`;
+    console.log("queryUrl->", queryUrl);
     return this.http.get(queryUrl)
       .map((response: Response) => {
         return (<any>response.json()).items.map(item => {
