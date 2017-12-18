@@ -15,8 +15,11 @@ import { DemoFormSkuWithBuildersComponent } from './demo-form-sku-with-builders/
 import { DemoFormNgModelComponent } from './demo-form-ng-model/demo-form-ng-model.component';
 import {HttpModule} from '@angular/http';
 import { SimpleHttpComponentComponent } from './simple-http-component/simple-http-component.component';
-import { SearchResultComponent } from './search-result/search-result.component';
-import {YouTubeSearchComponentComponent, youTubeServiceInjectables} from './you-tube-search-component/you-tube-search-component.component';
+import {
+  SearchBox, SearchResultComponent,
+  YouTubeSearchComponent, YouTubeService,
+  youTubeServiceInjectables
+} from './you-tube-search-component/you-tube-search-component';
 
 
 @NgModule({
@@ -26,8 +29,9 @@ import {YouTubeSearchComponentComponent, youTubeServiceInjectables} from './you-
     DemoFormSkuWithBuildersComponent,
     DemoFormNgModelComponent,
     SimpleHttpComponentComponent,
-    SearchResultComponent,
-    YouTubeSearchComponentComponent
+    YouTubeSearchComponent,
+    SearchBox,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
