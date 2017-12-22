@@ -25,4 +25,18 @@ export class SimpleHttpComponentComponent implements OnInit {
       });
   }
 
+  makePostRequest(): void {
+    this.loading = true;
+    this.http.post(
+      'http://jsonplaceholder.typicode.com/posts',
+      JSON.stringify({
+        body: 'bar',
+        title: 'foo',
+        userId: 1
+        })).subscribe((res) => {
+          this.data = res.json();
+          this.loading = false;
+    });
+  }
+
 }
