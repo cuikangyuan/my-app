@@ -1,13 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {
-	NgModule
+  Component,
+  NgModule
 } from '@angular/core';
 
 import {
 	FormsModule,
 	ReactiveFormsModule
-} from '@angular/forms'
+} from '@angular/forms';
 
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DemoFormSkuComponent } from './demo-form-sku/demo-form-sku.component';
@@ -20,7 +25,19 @@ import {
   YouTubeSearchComponent, YouTubeService,
   youTubeServiceInjectables
 } from './you-tube-search-component/you-tube-search-component';
+import {selector} from 'rxjs/operator/publish';
+import {HomeComponent} from './RouterComponents/HomeComponent';
+import {AboutComponent} from './RouterComponents/AboutComponent';
+import {ContactComponent} from './RouterComponents/ContactComponent';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
+const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'contactus', redirectTo: 'contact'}
+];
 
 @NgModule({
   declarations: [
@@ -31,15 +48,29 @@ import {
     SimpleHttpComponentComponent,
     YouTubeSearchComponent,
     SearchBox,
-    SearchResultComponent
+    SearchResultComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
+
   ],
   providers: [youTubeServiceInjectables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+
+
+
+
