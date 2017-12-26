@@ -32,20 +32,22 @@ import {ContactComponent} from './RouterComponents/ContactComponent';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {SearchComponent} from './demo-music-search/SearchComponent';
 import {SpotifyService} from './demo-music-search/SpotifyService';
+import {ProtectedComponent} from './auth-service/ProtectedComponent';
+import {LoggedInGuard} from './auth-service/guards/loggedIn.guard';
+import {AUTH_PROVIDERS} from './auth-service/AuthService';
+import {LoginComponent} from './auth-service/LoginComponent';
 
-/*
+
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'contactus', redirectTo: 'contact'}
+  {path: 'contactus', redirectTo: 'contact'},
+   {path: 'search', component: SearchComponent},
+  {path: 'protected', component: ProtectedComponent, canActivate: [LoggedInGuard]}
 ];
-*/
-const routes: Routes = [
-  {path: '', redirectTo: 'search', pathMatch: 'full'},
-  {path: 'search', component: SearchComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ const routes: Routes = [
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    SearchComponent
+    SearchComponent,
+    LoginComponent,
+    ProtectedComponent
 
   ],
   imports: [
@@ -71,7 +75,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
 
   ],
-  providers: [youTubeServiceInjectables, SpotifyService],
+  providers: [youTubeServiceInjectables, SpotifyService, AUTH_PROVIDERS, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
