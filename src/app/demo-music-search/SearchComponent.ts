@@ -15,7 +15,7 @@ import {SpotifyService} from './SpotifyService';
     <input type="text" #newquery 
            [value]="query"
             (keydown.enter)="submit(newquery.value)"/>
-    <button (click)="submit(newquery.value)" )>Search</button>
+    <button (click)="submit(newquery.value)">Search</button>
   </p>
   
   <div *ngIf="results">

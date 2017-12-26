@@ -30,13 +30,21 @@ import {HomeComponent} from './RouterComponents/HomeComponent';
 import {AboutComponent} from './RouterComponents/AboutComponent';
 import {ContactComponent} from './RouterComponents/ContactComponent';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {SearchComponent} from './demo-music-search/SearchComponent';
+import {SpotifyService} from './demo-music-search/SpotifyService';
 
+/*
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'contactus', redirectTo: 'contact'}
+];
+*/
+const routes: Routes = [
+  {path: '', redirectTo: 'search', pathMatch: 'full'},
+  {path: 'search', component: SearchComponent}
 ];
 
 @NgModule({
@@ -51,7 +59,8 @@ const routes: Routes = [
     SearchResultComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    SearchComponent
 
   ],
   imports: [
@@ -62,7 +71,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
 
   ],
-  providers: [youTubeServiceInjectables],
+  providers: [youTubeServiceInjectables, SpotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
