@@ -47,7 +47,7 @@ import {SpotifyService} from './SpotifyService';
               </div>
               <div class="attribution">
                 <h4>
-                  <a [routerLink]="[/albums], t.album.id">
+                  <a [routerLink]="['/albums', t.album.id]">
                     {{t.album.name}}
                   </a>
                 </h4>
@@ -62,6 +62,11 @@ import {SpotifyService} from './SpotifyService';
 })
 
 export class SearchComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.search();
+  }
+
   query: string;
   results: Object;
 
@@ -73,4 +78,28 @@ export class SearchComponent implements OnInit {
       .queryParams
       .subscribe(params => {this.query = params['query'] || ''; });
   }
+
+  search(): void {
+    console.log('this.query', this.query);
+
+    if(!this.query) {
+      return;
+    }
+
+    this.spotify.searchByTrack(this.query)
+      .subscribe((res: any) => this.renderResults(res));
+  }
+
+  renderResults(res: any) :void {
+    this.results = null;
+    if(res && res.tracks && res.tracks.items) {
+      this.results = res.tracks.items;
+    }
+  }
+
+  submit(query: string): void {
+    this.router.navigate(['search'], {queryParams: {query: query}})
+      .then(_ => this.search());
+  }
+
 }
